@@ -1,24 +1,4 @@
-# luuk180.dev-v2
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# luuk180.dev Version 2
+This is version 2 of my personal portfolio.
+The old version was built in angular and it is very hard to deploy and to keep up to date.
+So I decided to rebuild it.
