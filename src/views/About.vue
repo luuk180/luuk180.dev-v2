@@ -1,5 +1,7 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>I am Luuk!</h1>
+    I am Luuk Volkering also known as luuk180 on the internet.
+    My specialties are nothing...
   </div>
 </template>
