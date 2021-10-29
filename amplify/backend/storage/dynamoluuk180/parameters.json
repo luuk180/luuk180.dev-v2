@@ -1,0 +1,5 @@
+{
+    "tableName": "hours",
+    "partitionKeyName": "year",
+    "partitionKeyType": "N"
+}
