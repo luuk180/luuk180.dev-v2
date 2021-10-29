@@ -3,7 +3,6 @@ import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import CV from '../views/CV.vue'
 import Projects from '../views/Projects.vue'
-import Admin from '../views/Admin.vue'
 
 const routes = [
   {
@@ -31,7 +30,7 @@ const routes = [
     name: 'Admin',
     component: () => import('../views/admin/Admin.vue'),
     children: [
-      {path: '/hours', name: 'Hours', Hours}
+      {path: '/hours', name: 'Hours', component: () => import('../views/admin/Hours.vue')}
     ]
   }
 ]
