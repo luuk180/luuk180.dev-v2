@@ -1,9 +1,6 @@
 <template>
     <div id="admin">
         <amplify-auth-container>
-            <div v-if="authState !== 'signedin'">
-                <h1>You can't view this page.</h1>
-            </div>
             <amplify-authenticator>
             <div v-if="authState === 'signedin' && user">
                 <div>Hello, {{user.username}}</div>
