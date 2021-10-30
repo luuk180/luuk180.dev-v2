@@ -1,5 +1,10 @@
 <template>
     <div id="admin">
-        Welcome to the admin page!
+        <amplify-auth-container>
+            <amplify-authenticator>
+                Hello!
+                <amplify-sign-out></amplify-sign-out>
+            </amplify-authenticator>
+        </amplify-auth-container>
     </div>
 </template>
