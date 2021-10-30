@@ -28,15 +28,15 @@ const routes = [
   },
   {
     path: '/login',
+    name: 'Login',
     component: Login
   },
   {
     path: '/admin',
     name: 'Admin',
-    component: () => import('../views/admin/Admin.vue'),
+    component: () => import('../views/admin/Dashboard.vue'),
     children: [
       {path: '/hours', name: 'Hours', component: () => import('../views/admin/Hours.vue')},
-      {path: '/dashboard', name: 'Dashboard', component: () => import('../views/admin/Dashboard.vue')},
     ]
   }
 ]
