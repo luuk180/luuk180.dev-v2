@@ -9,6 +9,7 @@ import {
 
 import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
+import './assets/tailwind.css'
 Amplify.configure(awsconfig);
 
 applyPolyfills().then(() => {
