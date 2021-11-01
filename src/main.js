@@ -7,10 +7,11 @@ import {
   defineCustomElements
 } from '@aws-amplify/ui-components/loader';
 
-import Amplify from 'aws-amplify';
+import Amplify, {Analytics} from 'aws-amplify';
 import awsconfig from './aws-exports';
 import './assets/tailwind.css'
 Amplify.configure(awsconfig);
+Analytics.record();
 
 applyPolyfills().then(() => {
   defineCustomElements(window);

@@ -1,6 +1,6 @@
 {
     "identityPoolName": "luuk180dev2e6f67f6_identitypool_2e6f67f6",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "luuk182e6f67f6",
     "userPoolName": "luuk180dev2e6f67f6_userpool_2e6f67f6",
     "autoVerifiedAttributes": [

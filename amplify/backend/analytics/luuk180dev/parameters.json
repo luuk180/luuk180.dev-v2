@@ -1,0 +1,21 @@
+{
+    "appName": "luuk180dev",
+    "roleName": "pinpointLambdaRolee45f398a",
+    "cloudformationPolicyName": "cloudformationPolicye45f398a",
+    "cloudWatchPolicyName": "cloudWatchPolicye45f398a",
+    "pinpointPolicyName": "pinpointPolicye45f398a",
+    "authPolicyName": "pinpoint_amplify_e45f398a",
+    "unauthPolicyName": "pinpoint_amplify_e45f398a",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

@@ -38,5 +38,11 @@
       "type": "cicd",
       "lastPushTimeStamp": "2021-10-29T20:40:06.639Z"
     }
+  },
+  "analytics": {
+    "luuk180dev": {
+      "service": "Pinpoint",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }
