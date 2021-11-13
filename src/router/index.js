@@ -48,7 +48,6 @@ const routes = [
     component: () => import('../views/admin/Dashboard.vue'),
     beforeEnter: [checkAuth],
     children: [
-      {path: '/hours', name: 'Hours', component: () => import('../views/admin/Hours.vue')},
     ]
   }
 ]

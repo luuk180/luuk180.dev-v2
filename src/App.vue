@@ -7,13 +7,10 @@
         <router-link class="bg-white p-1.5 rounded" to="/cv">CV</router-link>
         <router-link class="bg-white p-1.5 rounded" to="/about">About</router-link>
         <router-link class="bg-white p-1.5 rounded" to="/login">Login</router-link>
-      </div>
-    </div>
-    <div v-if="authState === 'signedin' && user">
-      <div id="nav-authed" class="bg-fixed w-screen space-x-4 text-center text-gray-800 bg-blue-600 bg-opacity-80 text-2xl p-2 h-12">
-        <router-link class="bg-white p-1.5 rounded" to="/admin/dashboard">Dashboard</router-link>
-        <router-link class="bg-white p-1.5 rounded" to='/admin/hours'>Hours</router-link>
-        <button @click="handleSignOut" class="bg-white p-1.5 rounded w-6 right-4">Sign out</button>
+        <div v-if="authState === 'signedin' && user">
+          <router-link class="bg-white p-1.5 rounded" to="/admin/dashboard">Dashboard</router-link>
+          <button @click="handleSignOut" class="bg-white p-1.5 rounded w-6 right-4">Sign out</button>
+        </div>
       </div>
     </div>
     <div id="container" class="absolute inset-x-0 top-12 bottom-0 bg-blue-200">

@@ -1,10 +1,5 @@
 {
-  "storage": {
-    "dynamoluuk180": {
-      "service": "DynamoDB",
-      "providerPlugin": "awscloudformation"
-    }
-  },
+  "storage": {},
   "auth": {
     "luuk180dev2e6f67f6": {
       "service": "Cognito",
