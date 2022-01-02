@@ -12,7 +12,7 @@ function checkAuth(to, from) {
   }).then(user => console.log(user))
   .catch(err => {
     console.log(err);
-    router.push(from)
+    router.push(from).then()
   })
 }
 
