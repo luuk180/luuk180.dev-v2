@@ -1,7 +1,9 @@
 <template>
   <div id="home-page" class="container mx-auto py-4 w-full text-gray-700 text-l">
     <h1 id="welcome-text" class="w-full">Welcome to my part of the internet!</h1>
-    This is going to be my portfolio and I'm very busy building it right now!
+    <p>
+        Hey! I'm Luuk, I am currently learning web development and I will be going back to school full-time starting in September.
+    </p>
   </div>
 </template>
 
@@ -29,9 +31,3 @@
     to{border-right-color: transparent;}
 }
 </style>
-
-<script>
-    export default {
-      name: "home",
-    }
-</script>
