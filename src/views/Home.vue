@@ -1,5 +1,5 @@
 <template>
-  <div id="home-page" class="container mx-auto py-4 w-full text-gray-700 text-l">
+  <div id="home-page" class="container mx-auto py-4 w-full text-white text-l">
     <h1 id="welcome-text" class="w-full">Welcome to my part of the internet!</h1>
     <p>
         Hey! I'm Luuk, I am currently learning web development and I will be going back to school full-time starting in September.
@@ -13,7 +13,7 @@
     white-space: nowrap;
     overflow: hidden;
     font-size: 28px;
-    color: rgba(55, 65, 81, 1);
+    color: rgba(255, 255, 255, 1);
 }
 
 #welcome-text {
@@ -23,11 +23,11 @@
 
 @keyframes animated-text{
     from{width: 0;}
-    to {width: 472px;}
+    to {width: 426px;}
 }
 
 @keyframes animated-cursor{
-    from{border-right-color: rgba(55,65,81,1);}
+    from{border-right-color: rgba(255,255,255,1);}
     to{border-right-color: transparent;}
 }
 </style>
