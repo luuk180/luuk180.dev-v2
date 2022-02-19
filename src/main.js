@@ -24,9 +24,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const fireApp = initializeApp(firebaseConfig);
-const analytics = getAnalytics(fireApp);
-
-const app = initializeApp(App);
+const firebase = initializeApp(firebaseConfig);
+getAnalytics(firebase);
+const app = createApp(App);
 app.use(router)
 app.mount('#app');
