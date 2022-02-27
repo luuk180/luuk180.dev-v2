@@ -37,8 +37,7 @@ exports.GitHubToDB = functions.pubsub.schedule('0 * * * *')
     });
     const json = await response.json();
     const jsonObject = JSON.stringify(json.data.user.repositories.edges);
-    response.send(JSON.parse(jsonObject)[0].node);
-    for(var i = 0; i < JSON.parse(jsonObject).length; i++) {
+    for(let i = 0; i < JSON.parse(jsonObject).length; i++) {
       const currObj = JSON.parse(jsonObject)[i];
       if(!currObj.node.isPrivate) {
         await GHcollection.doc(currObj.node.name).set(currObj.node);
