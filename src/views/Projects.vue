@@ -4,6 +4,8 @@
             <div id="title" class="text-center p-1 text-xl bg-gray-600 rounded-xl">
                 {{doc.name}}
             </div>
+            {{doc.url}}
+            <br />
             {{doc.description}}
             <br />
             Size: {{doc.diskUsage}} kB

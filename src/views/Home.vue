@@ -3,6 +3,7 @@
     <h1 id="welcome-text" class="w-full">Welcome to my part of the internet!</h1>
     <p>
         Hey! I'm Luuk, I am currently learning web development and I will be going back to school full-time starting in September.
+        On this website you can find some projects I'm working on and you can find more information about me.
     </p>
   </div>
 </template>
