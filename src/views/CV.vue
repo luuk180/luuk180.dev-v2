@@ -10,19 +10,17 @@ import { storage } from '@/firebase';
 import vuePdfEmbed from 'vue-pdf-embed';
 const pdfRef = ref(storage, 'Resume-Luuk-Volkering.pdf');
 
-var linkedPath;
-
 export default {
   data() {
     return {
-      linkedPath
+      linkedPath: String
     }
   },
   created() {this.getPath()},
   methods: {
     getPath() {
       getDownloadURL(pdfRef).then((url) => {
-        linkedPath = url;
+        this.linkedPath = url;
       })
     }
   },
