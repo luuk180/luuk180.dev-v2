@@ -1,6 +1,10 @@
 <template>
-    <div class="container mx-auto">
-        <vue-pdf-embed :source=linkedPath></vue-pdf-embed>
+    <div class="container mx-auto flex justify-center p-2">
+        <div class="">
+            <vue-pdf-embed :source=linkedPath />
+        </div>
+        <br />
+        <a :href=linkedPath class="bg-black text-white p-2 rounded-l text-xl">Download CV</a>
     </div>
 </template>
 

@@ -4,6 +4,6 @@
         <router-link class="bg-gray-600 text-white p-1 rounded" to="/">Home</router-link>
         <router-link class="bg-gray-600 text-white p-1 rounded" to="/projects">Projects</router-link>
         <router-link class="bg-gray-600 text-white p-1 rounded" to="/cv">CV</router-link>
-        <router-link class="bg-gray-600 text-white p-1 rounded" to="/about">About</router-link>
+<!--        <router-link class="bg-gray-600 text-white p-1 rounded" to="/about">About</router-link>-->
     </div>
 </template>
