@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -33,7 +34,7 @@ func main() {
 	}
 	JsonValue, _ := json.Marshal(JsonData)
 	request, err := http.NewRequest("POST", "https://api.github.com/graphql", bytes.NewBuffer(JsonValue))
-	request.Header.Add("AUTHORIZATION", "bearer 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")
+	request.Header.Add("AUTHORIZATION", string(os.Getenv("API")))
 	request.Header.Add("USER_AGENT", "github-api")
 	client := &http.Client{Timeout: time.Second * 10}
 	response, err := client.Do(request)
