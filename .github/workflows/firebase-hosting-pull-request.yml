@@ -12,6 +12,5 @@ jobs:
       - run: yarn install && yarn build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_LUUK180_DEV2 }}'
           projectId: luuk180-dev2
