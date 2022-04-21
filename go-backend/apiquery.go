@@ -11,34 +11,32 @@ import (
 )
 
 func ApiQuery() string {
-	type JsonEntry struct {
-		name        string
-		url         string
-		homepageUrl string
-		description string
-		diskUsage   int
-		isPrivate   bool
+	type GitApiRes struct {
+		Data struct {
+			User struct {
+				Repositories struct {
+					Edges []struct {
+						Node struct {
+							IsPrivate   bool   `json:"isPrivate"`
+							Name        string `json:"name"`
+							URL         string `json:"url"`
+							HomepageURL string `json:"homepageUrl"`
+							Description string `json:"description"`
+							DiskUsage   int    `json:"diskUsage"`
+						} `json:"node"`
+					} `json:"edges"`
+				} `json:"repositories"`
+			} `json:"user"`
+		} `json:"data"`
 	}
 
-	type JsonNode struct {
-		node JsonEntry
-	}
-
-	type Edges struct {
-		edges []JsonNode
-	}
-
-	type Repositories struct {
-		repositories Edges
-	}
-
-	type User struct {
-		user Repositories
-	}
-
-	type totalRequest struct {
-		data User
-	}
+	//type PublicQuery struct {
+	//	Name        string
+	//	URL         string
+	//	HomepageURL string
+	//	Description string
+	//	DiskUsage   int
+	//}
 
 	JsonData := map[string]string{
 		"query": `
@@ -74,15 +72,14 @@ func ApiQuery() string {
 	}(response.Body)
 	data, _ := ioutil.ReadAll(response.Body)
 
-	//var trimStart = strings.TrimPrefix(string(data), "{\"data\":{\"user\":{\"repositories\":{\"edges\":[")
-	//var trimEnd = strings.TrimSuffix(trimStart, "]}}}}")
+	var QueryResponse = GitApiRes{}
+	json.Unmarshal(data, &QueryResponse)
 
-	var UnmarshData totalRequest
-
-	_ = json.Unmarshal(data, &UnmarshData)
-
-	println(string(data))
-	println(UnmarshData.data.user.repositories.edges[1].node.name)
+	for _, v := range QueryResponse.Data.User.Repositories.Edges {
+		if !v.Node.IsPrivate {
+			println(v.Node.Name)
+		}
+	}
 
 	return string(data)
 }
