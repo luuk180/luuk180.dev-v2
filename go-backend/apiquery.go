@@ -61,7 +61,7 @@ func ApiQuery() []byte {
 	}
 	JsonValue, _ := json.Marshal(JsonData)
 	request, _ := http.NewRequest("POST", "https://api.github.com/graphql", bytes.NewBuffer(JsonValue))
-	request.Header.Add("AUTHORIZATION", string(os.Getenv("API")))
+	request.Header.Add("AUTHORIZATION", os.Getenv("API"))
 	request.Header.Add("USER_AGENT", "github-api")
 	client := &http.Client{Timeout: time.Second * 10}
 	response, _ := client.Do(request)
