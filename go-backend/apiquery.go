@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -10,7 +11,15 @@ import (
 	"time"
 )
 
-func ApiQuery() string {
+func ApiQuery() []byte {
+	type ApiResult struct {
+		Name        string `json:"name"`
+		URL         string `json:"url"`
+		HomepageURL string `json:"homepageUrl"`
+		Description string `json:"description"`
+		DiskUsage   int    `json:"diskUsage"`
+	}
+
 	type GitApiRes struct {
 		Data struct {
 			User struct {
@@ -29,14 +38,6 @@ func ApiQuery() string {
 			} `json:"user"`
 		} `json:"data"`
 	}
-
-	//type PublicQuery struct {
-	//	Name        string
-	//	URL         string
-	//	HomepageURL string
-	//	Description string
-	//	DiskUsage   int
-	//}
 
 	JsonData := map[string]string{
 		"query": `
@@ -67,19 +68,38 @@ func ApiQuery() string {
 	defer func(Body io.ReadCloser) {
 		err := Body.Close()
 		if err != nil {
-			println(err)
+			fmt.Println(err)
 		}
 	}(response.Body)
 	data, _ := ioutil.ReadAll(response.Body)
 
-	var QueryResponse = GitApiRes{}
-	json.Unmarshal(data, &QueryResponse)
-
-	for _, v := range QueryResponse.Data.User.Repositories.Edges {
-		if !v.Node.IsPrivate {
-			println(v.Node.Name)
+	validJson := json.Valid(data)
+	if validJson {
+		var QueryResponse = GitApiRes{}
+		err := json.Unmarshal(data, &QueryResponse)
+		if err != nil {
+			println(err)
 		}
-	}
 
-	return string(data)
+		var returnJson []ApiResult
+
+		for _, v := range QueryResponse.Data.User.Repositories.Edges {
+			if !v.Node.IsPrivate {
+				returnJson = append(returnJson, ApiResult{
+					Name:        v.Node.Name,
+					URL:         v.Node.URL,
+					HomepageURL: v.Node.HomepageURL,
+					Description: v.Node.Description,
+					DiskUsage:   v.Node.DiskUsage,
+				})
+			}
+		}
+		var returnValue []byte
+		returnValue, _ = json.Marshal(returnJson)
+
+		return returnValue
+	} else {
+		fmt.Println("JSON is invalid")
+		return []byte("Invalid JSON")
+	}
 }
