@@ -17,8 +17,6 @@
 </template>
 
 <script>
-import { collection, getDocs } from "firebase/firestore";
-import { db } from '@/firebase'
 
 export default {
   data() {
@@ -31,10 +29,12 @@ export default {
   },
   methods: {
     async getGithub() {
-      const getGH = await getDocs(collection(db, "github"));
-      getGH.forEach((doc) => {
-        this.github.push(doc.data());
-      })
+      await fetch("https://back.luuk180.dev/query")
+        .then((response) => {
+          console.log(response)
+        }).catch(function (err) {
+          console.log("Unable to fetch ", err)
+        })
     }
   }
 }

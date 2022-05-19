@@ -20,7 +20,7 @@ export default {
   created() {this.getPath()},
   methods: {
     getPath() {
-      this.linkedPath = "http://localhost:3000/cv.pdf";
+      this.linkedPath = "https://back.luuk180.dev/cv.pdf";
     }
   },
   components: {
