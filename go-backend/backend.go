@@ -17,6 +17,7 @@ func main() {
 }
 
 func handleCV(w http.ResponseWriter, r *http.Request) {
+	enableCors(&w)
 	http.ServeFile(w, r, "./files/cv.pdf")
 }
 
@@ -27,7 +28,13 @@ func welcomeHandler(w http.ResponseWriter, _ *http.Request) {
 	}
 }
 
+func enableCors(w *http.ResponseWriter) {
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+	return
+}
+
 func handler(w http.ResponseWriter, _ *http.Request) {
+	enableCors(&w)
 	queryResult := string(ApiQuery())
 	_, err := fmt.Fprintf(w, queryResult)
 	if err != nil {

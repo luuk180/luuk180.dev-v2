@@ -29,12 +29,8 @@ export default {
   },
   methods: {
     async getGithub() {
-      await fetch("https://back.luuk180.dev/query")
-        .then((response) => {
-          console.log(response)
-        }).catch(function (err) {
-          console.log("Unable to fetch ", err)
-        })
+      const res = await fetch("https://back.luuk180.dev/query");
+      this.github = await res.json();
     }
   }
 }
