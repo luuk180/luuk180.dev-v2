@@ -1,8 +1,8 @@
 FROM golang:alpine
 WORKDIR /app
 
-COPY ./ ./
-COPY ./files ./files
+COPY .. ./
+COPY files ./files
 
 RUN go build -o main .
 
