@@ -12,20 +12,13 @@ import (
 )
 
 func querySync() {
-	type ApiResult struct {
-		Name        string `json:"name"`
-		URL         string `json:"url"`
-		HomepageURL string `json:"homepageUrl"`
-		Description string `json:"description"`
-		DiskUsage   int    `json:"diskUsage"`
-	}
-
 	type GitApiRes struct {
 		Data struct {
 			User struct {
 				Repositories struct {
 					Edges []struct {
 						Node struct {
+							Id          string `json:"id"`
 							IsPrivate   bool   `json:"isPrivate"`
 							Name        string `json:"name"`
 							URL         string `json:"url"`
@@ -46,6 +39,7 @@ func querySync() {
               repositories(orderBy: {field: PUSHED_AT, direction: ASC}, first: 100) {
                 edges {
                   node {
+					id
                     isPrivate
                     name
                     url
@@ -86,6 +80,7 @@ func querySync() {
 		for _, v := range QueryResponse.Data.User.Repositories.Edges {
 			if !v.Node.IsPrivate {
 				returnJson = append(returnJson, ApiResult{
+					Id:          v.Node.Id,
 					Name:        v.Node.Name,
 					URL:         v.Node.URL,
 					HomepageURL: v.Node.HomepageURL,
@@ -94,10 +89,7 @@ func querySync() {
 				})
 			}
 		}
-		var returnValue []byte
-		returnValue, _ = json.Marshal(returnJson)
-		fmt.Println(string(returnValue))
-
+		pushDb(returnJson)
 		return
 	} else {
 		fmt.Println("JSON is invalid")
