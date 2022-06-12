@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     async getGithub() {
-      const res = await fetch("https://back.luuk180.dev/query");
+      const res = await fetch("https://api.luuk180.dev/query");
       this.github = await res.json();
     }
   }
