@@ -1,27 +1,14 @@
 package main
 
-import (
-	"fmt"
-	"github.com/carlescere/scheduler"
-	"runtime"
-)
-
-type ApiResult struct {
-	Id          string `json:"id"`
-	Name        string `json:"name"`
-	URL         string `json:"url"`
-	HomepageURL string `json:"homepageUrl"`
-	Description string `json:"description"`
-	DiskUsage   int    `json:"diskUsage"`
+type GithubRemote struct {
+	ID          string `gorm:"column:id;primary_key" json:"id"`
+	Name        string `gorm:"column:name" json:"name"`
+	Url         string `gorm:"column:url" json:"url"`
+	HomepageURL string `gorm:"column:homepageurl" json:"homepageUrl"`
+	Description string `gorm:"column:description" json:"description"`
+	Diskusage   int    `gorm:"column:diskusage" json:"diskUsage"`
 }
 
 func main() {
-	fmt.Println("Welcome to the luuk180.dev job scheduler!")
-
-	_, err := scheduler.Every(10).Minutes().Run(querySync)
-	if err != nil {
-		return
-	}
-
-	runtime.Goexit()
+	querySync()
 }

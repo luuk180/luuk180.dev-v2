@@ -7,15 +7,7 @@ import (
 	"os"
 )
 
-func pushDb(apiResult []ApiResult) {
-	type GithubRemote struct {
-		ID          string `gorm:"column:id;primary_key"`
-		Name        string `gorm:"column:name"`
-		Url         string `gorm:"column:url"`
-		HomepageURL string `gorm:"column:homepageurl"`
-		Description string `gorm:"column:description"`
-		Diskusage   int    `gorm:"column:diskusage"`
-	}
+func pushDb(apiResult []GithubRemote) {
 
 	conn, err := gorm.Open(postgres.Open(os.Getenv("DATABASE_URL")), &gorm.Config{})
 	if err != nil {
@@ -23,15 +15,14 @@ func pushDb(apiResult []ApiResult) {
 	}
 
 	var githubRemote GithubRemote
-	conn.First(&githubRemote)
 
 	for _, v := range apiResult {
-		githubRemote.ID = v.Id
+		githubRemote.ID = v.ID
 		githubRemote.Name = v.Name
 		githubRemote.Description = v.Description
-		githubRemote.Url = v.URL
+		githubRemote.Url = v.Url
 		githubRemote.HomepageURL = v.HomepageURL
-		githubRemote.Diskusage = v.DiskUsage
+		githubRemote.Diskusage = v.Diskusage
 		conn.Updates(&githubRemote)
 	}
 	return

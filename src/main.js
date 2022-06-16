@@ -1,9 +1,8 @@
 import { createApp } from 'vue';
 import router from './router'
-import "tailwindcss/tailwind.css"
 import App from './App.vue';
-import './assets/tailwind.css'
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const app = createApp(App);
-app.use(router)
-app.mount('#app');
+createApp(App).use(router).mount('#app');
+
+import "bootstrap/dist/js/bootstrap.js"

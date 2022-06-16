@@ -75,17 +75,17 @@ func querySync() {
 			println(err)
 		}
 
-		var returnJson []ApiResult
+		var returnJson []GithubRemote
 
 		for _, v := range QueryResponse.Data.User.Repositories.Edges {
 			if !v.Node.IsPrivate {
-				returnJson = append(returnJson, ApiResult{
-					Id:          v.Node.Id,
+				returnJson = append(returnJson, GithubRemote{
+					ID:          v.Node.Id,
 					Name:        v.Node.Name,
-					URL:         v.Node.URL,
+					Url:         v.Node.URL,
 					HomepageURL: v.Node.HomepageURL,
 					Description: v.Node.Description,
-					DiskUsage:   v.Node.DiskUsage,
+					Diskusage:   v.Node.DiskUsage,
 				})
 			}
 		}
