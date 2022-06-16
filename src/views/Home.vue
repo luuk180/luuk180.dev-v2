@@ -18,14 +18,14 @@ export default {
     }
   },
   created() {
-    this.scrollWelcome();
+    setTimeout(() => this.scrollWelcome(), 500)
   },
   methods: {
     scrollWelcome() {
         if (this.counter < this.welcomeText.length) {
           this.welcome += this.welcomeText.charAt(this.counter);
           this.counter++;
-          setTimeout(() => this.scrollWelcome(), 500);
+          setTimeout(() => this.scrollWelcome(), 200);
         }
     }
   }
