@@ -1,18 +1,23 @@
 <template>
-    <div class="flex-auto">
+    <div v-if="!isFetching" class="flex-auto">
         <div class="p-2">
-            <figure class="gap-10 rounded-xl bg-gray-800 bg-opacity-80 p-2 w-48 float-left" v-for="doc in github" :key="doc.name">
-                <div id="title" class="text-center p-1 text-xl bg-gray-600 rounded-xl">
-                    <a :href=doc.url>{{doc.name}}</a>
+            <div class="card-group">
+            <div class="card" style="width: 18rem;" v-for="doc in github" :key="doc.name">
+                <div class="card-header">
+                    <div class="card-title">
+                        <a class="card-link text-primary" :href=doc.url>{{doc.name}}</a>
+                    </div>
                 </div>
-                {{doc.description}}
-                <br />
-                Size: {{doc.diskUsage}} kB
-                <br />
-                <a :href=doc.homepageUrl>{{doc.homepageUrl}}</a>
-            </figure>
+                <p class="card-text">{{doc.description}}</p>
+                <p class="card-text">Size: {{doc.diskUsage}} kB</p>
+                <a v-if="doc.homepageUrl" class="card-link card-footer" :href=doc.homepageUrl>{{doc.homepageUrl}}</a>
+            </div>
+            </div>
         </div>
-        <div class="absolute p-2 bottom-0 float-center text-white">You can click the name of the project to go to the repository on GitHub</div>
+        <div class="bottom-10 align-content-left text-white">You can click the name of the project to go to the repository on GitHub</div>
+    </div>
+    <div v-if="isFetching">
+        <p class="text-xl-center">Page is loading...</p>
     </div>
 </template>
 
@@ -21,7 +26,8 @@
 export default {
   data() {
     return {
-      github: []
+      github: [],
+      isFetching: true,
     }
   },
   created() {
@@ -31,6 +37,7 @@ export default {
     async getGithub() {
       const res = await fetch("https://api.luuk180.dev/query");
       this.github = await res.json();
+      this.isFetching = false;
     }
   }
 }

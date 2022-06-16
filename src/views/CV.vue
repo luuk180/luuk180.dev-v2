@@ -1,9 +1,9 @@
 <template>
-    <div class="container">
+    <div class="container h-100">
         <vue-pdf-embed :source="linkedPath"/>
         <br />
         <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-primary" :href=linkedPath>Download CV</button>
+            <a role="button" class="btn btn-primary" :href=linkedPath>Download CV</a>
         </div>
     </div>
 </template>
