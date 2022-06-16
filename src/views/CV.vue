@@ -1,5 +1,5 @@
 <template>
-    <div class="container h-100">
+    <div class="container">
         <vue-pdf-embed :source="linkedPath"/>
         <br />
         <div class="d-flex justify-content-center">

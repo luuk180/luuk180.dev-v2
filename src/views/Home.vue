@@ -1,6 +1,6 @@
 <template>
   <div id="home-page" class="container mx-auto py-4 w-full text-white text-l">
-    <h1 id="welcome-text" class="w-full">Welcome to my part of the internet!</h1>
+    <h1 id="welcome-text" class="w-full">{{welcome}}</h1>
     <p>
         Hey! I'm Luuk, I am currently learning web development and I will be going back to school full-time starting in September.
         On this website you can find some projects I'm working on and you can find more information about me.
@@ -8,27 +8,26 @@
   </div>
 </template>
 
-<style>
-#welcome-text {
-    border-right: solid 3px rgba(191, 219, 254, 1);
-    white-space: nowrap;
-    overflow: hidden;
-    font-size: 28px;
-    color: rgba(255, 255, 255, 1);
+<script>
+export default {
+  data() {
+    return {
+      counter: 0,
+      welcome: "",
+      welcomeText: "Welcome to my part of the internet!"
+    }
+  },
+  created() {
+    this.scrollWelcome();
+  },
+  methods: {
+    scrollWelcome() {
+        if (this.counter < this.welcomeText.length) {
+          this.welcome += this.welcomeText.charAt(this.counter);
+          this.counter++;
+          setTimeout(() => this.scrollWelcome(), 500);
+        }
+    }
+  }
 }
-
-#welcome-text {
-    animation: animated-text 4s steps(29) 1s 1 normal both,
-                animated-cursor 600ms steps(29) infinite;
-}
-
-@keyframes animated-text{
-    from{width: 0;}
-    to {width: 426px;}
-}
-
-@keyframes animated-cursor{
-    from{border-right-color: rgba(255,255,255,1);}
-    to{border-right-color: transparent;}
-}
-</style>
+</script>
