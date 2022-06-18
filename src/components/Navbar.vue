@@ -57,23 +57,25 @@ export default {
   },
   watch: {
     '$route' () {
+      this.allFalse();
       switch (this.$route.path) {
         case "/":
           this.home = true;
-          this.projects = false;
-          this.cv = false;
           break;
         case "/projects":
           this.projects = true;
-          this.home = false;
-          this.cv = false;
           break;
         case "/cv":
           this.cv = true;
-          this.home = false;
-          this.projects = false;
           break;
       }
+    }
+  },
+  methods: {
+    allFalse() {
+      this.home = false;
+      this.projects = false;
+      this.cv = false;
     }
   }
 }
