@@ -9,6 +9,9 @@
 <script>
 import Navbar from "@/components/Navbar";
 export default {
-  components: {Navbar}
+  components: {Navbar},
+  mounted() {
+    document.title = "luuk180.dev"
+  }
 }
 </script>
