@@ -3,9 +3,9 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
 	"time"
@@ -62,7 +62,7 @@ func queryGit() []GithubRemote {
 	defer func(Body io.ReadCloser) {
 		err := Body.Close()
 		if err != nil {
-			fmt.Println(err)
+			log.Fatal(err)
 		}
 	}(response.Body)
 	data, _ := ioutil.ReadAll(response.Body)
@@ -72,7 +72,7 @@ func queryGit() []GithubRemote {
 		var QueryResponse = GitApiRes{}
 		err := json.Unmarshal(data, &QueryResponse)
 		if err != nil {
-			println(err)
+			log.Fatal(err)
 		}
 
 		var returnJson []GithubRemote
@@ -91,7 +91,7 @@ func queryGit() []GithubRemote {
 		}
 		return returnJson
 	} else {
-		fmt.Println("JSON is invalid")
+		log.Fatal("JSON is invalid")
 		return nil
 	}
 }
