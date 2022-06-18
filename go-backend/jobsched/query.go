@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-func querySync() {
+func queryGit() []GithubRemote {
 	type GitApiRes struct {
 		Data struct {
 			User struct {
@@ -89,10 +89,9 @@ func querySync() {
 				})
 			}
 		}
-		pushDb(returnJson)
-		return
+		return returnJson
 	} else {
 		fmt.Println("JSON is invalid")
-		return
+		return nil
 	}
 }

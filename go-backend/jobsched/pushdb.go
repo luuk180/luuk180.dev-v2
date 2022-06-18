@@ -1,29 +1,39 @@
 package main
 
 import (
-	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"log"
-	"os"
 )
 
-func pushDb(apiResult []GithubRemote) {
-
-	conn, err := gorm.Open(postgres.Open(os.Getenv("DATABASE_URL")), &gorm.Config{})
-	if err != nil {
-		log.Fatal("Failed to open database: ", err)
+func pushDb(apiResult []GithubRemote, dbQuery []GithubRemote, conn *gorm.DB) {
+	for i := range dbQuery {
+		var statusCode = 0
+		for i2 := range apiResult {
+			if dbQuery[i].ID == apiResult[i2].ID {
+				conn.Updates(dbQuery[i])
+				statusCode = 1
+			}
+			if statusCode == 1 {
+				continue
+			}
+		}
+		if statusCode == 0 {
+			conn.Delete(dbQuery[i])
+		}
 	}
-
-	var githubRemote GithubRemote
-
-	for _, v := range apiResult {
-		githubRemote.ID = v.ID
-		githubRemote.Name = v.Name
-		githubRemote.Description = v.Description
-		githubRemote.Url = v.Url
-		githubRemote.HomepageURL = v.HomepageURL
-		githubRemote.Diskusage = v.Diskusage
-		conn.Updates(&githubRemote)
+	for i := range apiResult {
+		var statusCode = 0
+		for i2 := range dbQuery {
+			if apiResult[i].ID == dbQuery[i2].ID {
+				statusCode = 1
+				continue
+			}
+			if statusCode == 1 {
+				continue
+			}
+		}
+		if statusCode == 0 {
+			conn.Create(apiResult[i])
+		}
 	}
 	return
 }

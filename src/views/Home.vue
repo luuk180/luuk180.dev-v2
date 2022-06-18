@@ -25,7 +25,11 @@ export default {
         if (this.counter < this.welcomeText.length) {
           this.welcome += this.welcomeText.charAt(this.counter);
           this.counter++;
-          setTimeout(() => this.scrollWelcome(), 200);
+          if (this.welcomeText.charAt(this.counter) === " ") {
+            this.scrollWelcome();
+          }else{
+            setTimeout(() => this.scrollWelcome(), 200);
+          }
         }
     }
   }
