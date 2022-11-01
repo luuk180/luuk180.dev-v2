@@ -1,11 +1,14 @@
 <template>
- <div v-if="pis">
      <ul class="list-group">
-         <div v-for="pi in pis" :key="pi.HostName">
-             <li class="list-group-item bg-secondary text-white">{{pi.Hostname}}: {{pi.LocalIp}}</li>
+         <div v-if="pis">
+             <div v-for="pi in pis" :key="pi.HostName">
+                 <li class="list-group-item bg-secondary text-white">{{pi.Hostname}}: {{pi.LocalIp}}</li>
+             </div>
+         </div>
+         <div v-if="!pis">
+             <li class="list-group-item bg-secondary text-white">No pi's found!</li>
          </div>
      </ul>
- </div>
 </template>
 
 <script>
