@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import CV from '../views/CV.vue'
 import Projects from '../views/Projects.vue'
+import ShowPi from "@/views/ShowPi";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/projects',
     name: 'Projects',
     component: Projects
+  },
+  {
+    path: '/pi',
+    name: "Pi List",
+    component: ShowPi
   }
 ]
 
