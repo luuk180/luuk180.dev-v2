@@ -21,6 +21,7 @@ export const getServerSideProps: GetServerSideProps = async ({res}) => {
                          homepageUrl
                          description
                          diskUsage
+                         pushedAt
                        }
                      }
                    }
@@ -43,12 +44,18 @@ export const getServerSideProps: GetServerSideProps = async ({res}) => {
 function Projects({entries}: any) {
     return <>
         <NavBar/>
-        <div className="container mx-auto py-4 w-full text-white text-l">
-            <ul>
+        <div className="container mx-auto py-4 w-full text-l">
+            <div className="card-group">
                 {entries.map((entry: any) => ( !entry.node.isPrivate &&
-                    <li key={entry.node.name}>{entry.node.name}</li>
-                ))}
-            </ul>
+                    <div key={entry.node.pushedAt} className="card">
+                        <div className="card-header">
+                          <a className="btn card-title" href={entry.node.url}>{entry.node.name}</a>
+                        </div>
+                        <p className="card-text">{entry.node.description}</p>
+                        <p className="card-footer">{entry.node.diskUsage} kB</p>
+                    </div>
+                )).reverse()}
+            </div>
         </div>
     </>
 }
