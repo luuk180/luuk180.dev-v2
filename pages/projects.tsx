@@ -1,7 +1,8 @@
 import NavBar from "@/components/navbar";
 import {GetServerSideProps} from "next";
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({res}) => {
+    res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
     const response = await fetch('https://api.github.com/graphql', {
         method: 'POST',
         headers: {
