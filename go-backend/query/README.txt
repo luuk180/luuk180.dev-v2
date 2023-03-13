@@ -1,1 +1,0 @@
-This app needs a ./files folder containing a cv.pdf file that it will serve on the /cv path.
